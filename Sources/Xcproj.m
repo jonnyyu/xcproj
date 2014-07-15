@@ -274,7 +274,20 @@ static Class XCBuildConfiguration = Nil;
 
 - (NSArray *) allowedActions
 {
-	return [NSArray arrayWithObjects:@"list-targets", @"list-headers", @"read-build-setting", @"write-build-setting", @"add-xcconfig", @"add-resources-bundle", @"touch", nil];
+	return [NSArray arrayWithObjects:@"list-targets", @"list-headers", @"read-build-setting", @"write-build-setting", @"add-xcconfig", @"add-resources-bundle", @"touch", @"show-format", @"update-format", nil];
+}
+
+- (int)showFormat:(NSArray *)arguments
+{
+    ddprintf(@"%@\n", [_project _compatibilityVersion]);
+    return EX_OK;
+}
+
+- (int)updateFormat:(NSArray *)argument
+{
+    //update to format of latest version.
+    [_project setPreferredProjectFormat:[PBXProject _nativeFormat]];
+    return [self writeProject];
 }
 
 - (void) printUsage:(int)exitCode
@@ -299,7 +312,11 @@ static Class XCBuildConfiguration = Nil;
 	         @" * add-resources-bundle <bundle_path>\n"
 	         @"     Add a bundle to the project and in the `Copy Bundle Resources` build phase\n\n"
 	         @" * touch\n"
-	         @"     Rewrite the project file\n");
+	         @"     Rewrite the project file\n\n"
+             @" * show-format\n"
+             @"     Show the compatibility version of the project file\n\n"
+             @" * update-format\n"
+             @"     Update the compatibility version to latest\n");
 	exit(exitCode);
 }
 

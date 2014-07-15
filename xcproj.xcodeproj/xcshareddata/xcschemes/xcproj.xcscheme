@@ -96,15 +96,23 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = "--project Sandbox.xcodeproj"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "touch"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--project Sandbox.xcodeproj"
+            argument = "--vers"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--vers"
+            argument = "show-format"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "update-format"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
